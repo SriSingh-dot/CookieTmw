@@ -14,10 +14,10 @@
             padding: 0;
             background: #FFE1AF;
             font-family: 'Allura', cursive;
-            border: 20px double #957C62;
+            border: 25px double #957C62;
             color: #B77466;
             min-height: 100vh;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.15);
             position: relative;
         }
 
@@ -42,44 +42,173 @@
 
         .cookie-card {
             background: #FFECD4;
-            border: 3px solid #957C62;
+            border: 4px solid #957C62;
             border-radius: 25px;
             width: 280px;
             text-align: center;
             padding: 20px 20px 15px 20px;
-            box-shadow: 0 0 15px rgba(151,124,98,0.4);
+            box-shadow: 0 0 20px rgba(151,124,98,0.5);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        
+        .cookie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 35px rgba(183,116,102,0.7);
+        }
+
+        .cookie-card img {
+            width: 150px;
+            margin-bottom: 10px;
+            animation: float 3.5s infinite ease-in-out, glow 3s infinite ease-in-out;
+        }
+
+        .cookie-card h2 {
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            animation: floatText 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 4px #B77466); }
+            50% { filter: drop-shadow(0 0 15px #B77466); }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .btn {
+            background: #B77466;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 40px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(183,116,102,0.8), 
+                        0 0 30px rgba(183,116,102,0.5);
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(183,116,102,1),
+                        0 0 50px rgba(183,116,102,0.7);
+        }
+
+        .divider {
+            width: 85%;
+            margin: 60px auto 30px auto;
+            border-bottom: 4px solid #957C62;
+        }
+
+        .collect-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 12px 45px;
+            background: #B77466;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 30px;
+            text-decoration: none;
+            font-family: 'Allura', cursive;
+            box-shadow: 0 0 15px rgba(183,116,102,0.8),
+                        0 0 30px rgba(183,116,102,0.5);
+            transition: 0.2s;
+        }
+
+        .collect-btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 25px rgba(183,116,102,1),
+                        0 0 50px rgba(183,116,102,0.7);
+        }
+
+        .collect-text {
+            text-align: center;
+            font-size: 38px;
+            margin-top: 15px;
+            color: #957C62;
+        }
+
+        .back-btn {
+            position: fixed;
+            left: 40px; 
+            bottom: 40px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @media screen and (max-width: 900px) {
+            header h1 {
+                font-size: 60px;
+            }
+            .cookie-card {
+                width: 80%;
+            }
+            .back-btn {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <h1>Fortune Cookie Shop</h1>
     </header>
 
     <div class="cookies-container">
         <div class="cookie-card">
-            <img src="cookie1.png" alt="Cookie 1">
+            <img src="cookie1.png">
             <h2>Lucky Star Cookie</h2>
             <a href="#" class="btn">Claim</a>
         </div>
 
         <div class="cookie-card">
-            <img src="cookie2.png" alt="Cookie 2">
+            <img src="cookie2.png">
             <h2>Wisdom Cookie</h2>
             <a href="#" class="btn">Claim</a>
         </div>
 
         <div class="cookie-card">
-            <img src="cookie3.png" alt="Cookie 3">
+            <img src="cookie3.png">
             <h2>Energy Cookie</h2>
             <a href="#" class="btn">Claim</a>
         </div>
     </div>
 
+    <div class="divider"></div>
+
+    <a href="collection.html" class="collect-btn">Collected</a>
+
+    <div class="collect-text">Collect your future and store it</div>
+
     <a href="index.html">
-        <img src="c2.png" alt="Back" class="back-btn">
+        <img src="undo.png" class="back-btn">
     </a>
+
 </body>
 </html>
+
+
+
+
+
+
