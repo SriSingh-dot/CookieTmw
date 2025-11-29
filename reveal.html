@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fortune Cookie Reveal</title>
+<link rel="icon" type="image/png" href="fortune.png">
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #FFE1AF;
+    font-family: 'Allura', cursive;
+    border: 25px double #957C62;
+    color: #B77466;
+    min-height: 100vh;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.15);
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#cookieHeading {
+    font-size: 60px;
+    margin: 40px 0 20px 0;
+}
+#cookieImg {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.5s;
+}
+#cookieMsg {
+    font-size: 40px;
+    color: #B77466;
+    text-align: center;
+    margin-top: 50px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+.collect-btn {
+    margin-top: 40px;
+    padding: 12px 35px;
+    background: #B77466;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 28px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(183,116,102,0.8),
+                0 0 30px rgba(183,116,102,0.5);
+    transition: 0.2s;
+}
+.collect-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(183,116,102,1),
+                0 0 50px rgba(183,116,102,0.7);
+}
+.sparkle {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ff6a8e 0%, rgba(255,106,142,0) 70%);
+    border-radius: 50%;
+    top: -20px;
+    opacity: 0.9;
+    pointer-events: none;
+    filter: blur(1px);
+    animation: drift 7s linear infinite;
+}
+@keyframes drift {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+    50% { transform: translateY(40vh) translateX(20px) scale(1.2); opacity: .8; }
+    100% { transform: translateY(100vh) translateX(-20px) scale(1); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<h1 id="cookieHeading">Cookie</h1>
+<img id="cookieImg" src="cookie.png">
+<div id="cookieMsg"></div>
+<a href="cookie.html" class="collect-btn" style="display:none;" id="collectBtn">Collect</a>
+<div id="sparkles"></div>
+
+<script>
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const cookieType = urlParams.get('cookie') || '1';
+const heading = document.getElementById('cookieHeading');
+const cookieImg = document.getElementById('cookieImg');
+const cookieMsg = document.getElementById('cookieMsg');
+const collectBtn = document.getElementById('collectBtn');
+
+const messages = {
+    1: [
+        "You will find luck today!", "A surprise awaits you!", "Your dreams will bloom!",
+        "Fortune smiles upon you!", "An unexpected gain is near!", "Today is your lucky day!",
+        "Good vibes are coming!", "A golden opportunity appears!", "Joy is around the corner!", "Happiness approaches!"
+    ],
+    2: [
+        "Wisdom comes to you.", "A new idea sparks soon.", "Knowledge will guide you.",
+        "Insight will
+};
+
+const headings = {
+    1: "Lucky Star Cookie",
+    2: "Wisdom Cookie",
+    3: "Energy Cookie"
+};
+
+heading.textContent = headings[cookieType];
+cookieImg.src = "cookie.png";
+
+let clickCount = 0;
+const clicksToFade = 5;
+let revealed = false;
+
+cookieImg.addEventListener("click", ()=>{
+    if(revealed) return;
+    clickCount++;
+    cookieImg.style.transform = `rotate(${Math.random()*20-10}deg)`;
+    setTimeout(()=> cookieImg.style.transform = 'rotate(0deg)', 150);
+
+   
+</script>
+
+</body>
+</html>
