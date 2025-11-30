@@ -2,45 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"content="width=device-width, initial-scale=1.0">
 <title>Your Collection</title>
 <link rel="icon" type="image/png" href="fortune.png">
 <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+<style>
+
+body{ margin:0; padding:0;background:#FFE1AF;font-family:'Allura',cursive;border:25px double #957C62;
+color:#B77466;min-height:100vh; box-shadow:inset 0 0 60px rgba(0,0,0,0.15); overflow-x:hidden; text-align:center; }
+
+h1{ font-size:70px;margin-top:30px;}
+
+.section{
+ width:85%; background:#FFECD4; border:4px solid #957C62; border-radius:25px;
+ padding:25px; margin:30px auto; box-shadow:0 0 20px rgba(151,124,98,0.5)
+}
+
+.section h2{
+ font-size:55px; margin-bottom:15px;
+}
+
+.cookie-icon{width:55px; vertical-align:middle; margin-right:10px;}
+
+.msg-box{
+ font-size:30px;margin:10px 0;padding:10px 15px;background:#FFE1AF;
+ border:3px solid #B77466;border-radius:20px;
+}
+
+.empty-text{font-size:32px;opacity:.6}
+
+.back-btn{
+ display:inline-block;margin:40px auto;padding:12px 40px;background:#B77466;
+ color:#fff;border-radius:40px;font-size:28px;text-decoration:none;
+ box-shadow:0 0 15px rgba(183,116,102,.8),0 0 30px rgba(183,116,102,.5)
+}
+.back-btn:hover{ transform:scale(1.05)}
+</style>
 </head>
+
 <body>
 
 <h1>Your Collection</h1>
 
 <div class="section">
-    <h2><img src="b1.svg" class="cookie-icon"> Lucky Star Cookie</h2>
-    <div id="type1"></div>
+<h2><img src="b1.svg" class="cookie-icon"> Lucky Star Cookie</h2>
+<div id="type1"></div>
 </div>
 
 <div class="section">
-    <h2><img src="b2.svg" class="cookie-icon"> Wisdom Cookie</h2>
-    <div id="type2"></div>
+<h2><img src="b2.svg" class="cookie-icon"> Wisdom Cookie</h2>
+<div id="type2"></div>
 </div>
 
 <div class="section">
-    <h2><img src="b3.svg" class="cookie-icon"> Energy Cookie</h2>
-    <div id="type3"></div>
+<h2><img src="b3.svg" class="cookie-icon"> Energy Cookie</h2>
+<div id="type3"></div>
 </div>
 
 <a href="shop.html" class="back-btn">Back</a>
 
 <script>
-let stored = JSON.parse(localStorage.getItem("fortuneCollection")) || {1:[],2:[],3:[]};
 
-function displayMessages(type, elementId) {
-    const container = document.getElementById(elementId);
-    container.innerHTML = "";
+let stored=JSON.parse(localStorage.getItem("fortuneCollection")) || {1:[],2:[],3:[]};
 
-    if (stored[type].length === 0) {
-        container.innerHTML = "<div class='empty-text'>No messages yet</div>";
+function displayMessages(t, e){
+ let box=document.getElementById(e); box.innerHTML="";
+ if(stored[t].length===0){
+    box.innerHTML="<div class='empty-text'>No messages yet</div>";
+    return;
+ }
+ stored[t].forEach(m=>{
+   let d=document.createElement("div");
+   d.className="msg-box"; d.textContent=m;
+   box.appendChild(d);
+ });
+}
 
-        
-        </script>
+displayMessages(1,"type1")
+displayMessages(2,"type2")
+displayMessages(3,"type3")
 
+</script>
 
 </body>
 </html>
