@@ -1,223 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fortune Cookie Shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fortune Cookie Shop</title>
+<link rel="icon" type="image/png" href="fortune.png">
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="fortune.png">
-    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #FFE1AF;
+    font-family: 'Allura', cursive;
+    border: 25px double #957C62;
+    color: #B77466;
+    min-height: 100vh;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.15);
+    overflow-x: hidden;
+    position: relative;
+}
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #FFE1AF;
-            font-family: 'Allura', cursive;
-            border: 25px double #957C62;
-            color: #B77466;
-            min-height: 100vh;
-            box-shadow: inset 0 0 60px rgba(0,0,0,0.15);
-            overflow-x: hidden;
-            position: relative;
-        }
+.sparkle {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ff6a8e 0%, rgba(255,106,142,0) 70%);
+    border-radius: 50%;
+    top: -20px;
+    opacity: 0.9;
+    pointer-events: none;
+    filter: blur(1px);
+    animation: drift 7s linear infinite;
+}
 
-        .sparkle {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            background: radial-gradient(circle, #ff6a8e 0%, rgba(255,106,142,0) 70%);
-            border-radius: 50%;
-            top: -20px;
-            opacity: 0.9;
-            pointer-events: none;
-            filter: blur(1px);
-            animation: drift 7s linear infinite;
-        }
+@keyframes drift {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+    50% { transform: translateY(40vh) translateX(20px) scale(1.2); opacity: .8; }
+    100% { transform: translateY(100vh) translateX(-20px) scale(1); opacity: 0; }
+}
 
-        @keyframes drift {
-            0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
-            50% { transform: translateY(40vh) translateX(20px) scale(1.2); opacity: .8; }
-            100% { transform: translateY(100vh) translateX(-20px) scale(1); opacity: 0; }
-        }
+header {
+    text-align: center;
+    margin: 30px 0;
+}
 
-        header {
-            text-align: center;
-            margin: 30px 0;
-        }
+header h1 {
+    font-size: 80px;
+    text-decoration: underline;
+    margin: 0;
+}
 
-        header h1 {
-            font-size: 80px;
-            text-decoration: underline;
-            margin: 0;
-        }
+.cookies-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
 
-        .cookies-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 0 20px;
-        }
+.cookie-card {
+    background: #FFECD4;
+    border: 4px solid #957C62;
+    border-radius: 25px;
+    width: 280px;
+    text-align: center;
+    padding: 20px 20px 15px 20px;
+    box-shadow: 0 0 20px rgba(151,124,98,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-        .cookie-card {
-            background: #FFECD4;
-            border: 4px solid #957C62;
-            border-radius: 25px;
-            width: 280px;
-            text-align: center;
-            padding: 20px 20px 15px 20px;
-            box-shadow: 0 0 20px rgba(151,124,98,0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+.cookie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 35px rgba(183,116,102,0.7);
+}
 
-        .cookie-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 35px rgba(183,116,102,0.7);
-        }
+.cookie-card img {
+    width: 150px;
+    margin-bottom: 10px;
+    animation: float 3.5s infinite ease-in-out, glow 3s infinite ease-in-out;
+}
 
-        .cookie-card img {
-            width: 150px;
-            margin-bottom: 10px;
-            animation: float 3.5s infinite ease-in-out, glow 3s infinite ease-in-out;
-        }
+.cookie-card h2 {
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    animation: floatText 3s infinite ease-in-out;
+}
 
-        .cookie-card h2 {
-            font-size: 32px;
-            margin: 0 0 10px 0;
-            animation: floatText 3s infinite ease-in-out;
-        }
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 4px #B77466); }
+    50% { filter: drop-shadow(0 0 15px #B77466); }
+}
 
-        @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 4px #B77466); }
-            50% { filter: drop-shadow(0 0 15px #B77466); }
-        }
+@keyframes floatText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
 
-        @keyframes floatText {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+.btn {
+    background: #B77466;
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(183,116,102,0.8), 
+                0 0 30px rgba(183,116,102,0.5);
+    transition: 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
 
-        .btn {
-            background: #B77466;
-            color: white;
-            padding: 12px 35px;
-            border: none;
-            border-radius: 40px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(183,116,102,0.8), 
-                        0 0 30px rgba(183,116,102,0.5);
-            transition: 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(183,116,102,1),
+                0 0 50px rgba(183,116,102,0.7);
+}
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(183,116,102,1),
-                        0 0 50px rgba(183,116,102,0.7);
-        }
+.claimed {
+    background: #A5675B !important;
+    cursor: default;
+    pointer-events: none;
+    animation: glowClaimed 2s infinite ease-in-out;
+}
 
-        .divider {
-            width: 85%;
-            margin: 60px auto 30px auto;
-            border-bottom: 4px solid #957C62;
-        }
+@keyframes glowClaimed {
+    0%,100% { box-shadow: 0 0 12px #B77466; }
+    50% { box-shadow: 0 0 25px #B77466; }
+}
 
-        .collect-btn {
-            display: block;
-            width: fit-content;
-            margin: 0 auto;
-            padding: 12px 45px;
-            background: #B77466;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            font-size: 30px;
-            text-decoration: none;
-            font-family: 'Allura', cursive;
-            box-shadow: 0 0 15px rgba(183,116,102,0.8),
-                        0 0 30px rgba(183,116,102,0.5);
-            transition: 0.2s;
-        }
+.divider {
+    width: 85%;
+    margin: 60px auto 30px auto;
+    border-bottom: 4px solid #957C62;
+}
 
-        .collect-text {
-            text-align: center;
-            font-size: 38px;
-            margin-top: 15px;
-            color: #957C62;
-        }
+.collect-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 12px 45px;
+    background: #B77466;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 30px;
+    text-decoration: none;
+    font-family: 'Allura', cursive;
+    box-shadow: 0 0 15px rgba(183,116,102,0.8),
+                0 0 30px rgba(183,116,102,0.5);
+    transition: 0.2s;
+}
 
-        .back-btn {
-            position: fixed;
-            left: 40px; 
-            bottom: 40px;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+.collect-text {
+    text-align: center;
+    font-size: 38px;
+    margin-top: 15px;
+    color: #957C62;
+}
 
-        .back-btn:hover {
-            transform: scale(1.1);
-        }
+.back-btn {
+    position: fixed;
+    left: 40px; 
+    bottom: 40px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
 
-        #popupBox {
-            display:none;
-            position:fixed;
-            top:50%;
-            left:50%;
-            transform:translate(-50%,-50%);
-            background:#FFECD4;
-            border:4px solid #957C62;
-            border-radius:25px;
-            padding:35px;
-            width: 330px;
-            text-align:center;
-            z-index:2000;
-            box-shadow:0 0 35px rgba(183,116,102,0.8);
-        }
+.back-btn:hover {
+    transform: scale(1.1);
+}
 
-        #popupText {
-            font-size:28px;
-            color:#B77466;
-            margin-bottom:25px;
-        }
+#popupBox {
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#FFECD4;
+    border:4px solid #957C62;
+    border-radius:25px;
+    padding:35px;
+    width: 330px;
+    text-align:center;
+    z-index:2000;
+    box-shadow:0 0 35px rgba(183,116,102,0.8);
+}
 
-        .pop-btn {
-            background:#B77466;
-            color:white;
-            border:none;
-            border-radius:40px;
-            padding:10px 30px;
-            font-size:24px;
-            cursor:pointer;
-            margin:10px;
-        }
+#popupText {
+    font-size:28px;
+    color:#B77466;
+    margin-bottom:25px;
+}
 
-        .pop-btn.no {
-            background:#957C62;
-        }
+.pop-btn {
+    background:#B77466;
+    color:white;
+    border:none;
+    border-radius:40px;
+    padding:10px 30px;
+    font-size:24px;
+    cursor:pointer;
+    margin:10px;
+}
 
-        footer {
-            border: 8px double #957C62;
-            margin-top: 60px;
-            padding: 20px;
-            text-align:center;
-            background:#FFECD4;
-        }
+footer {
+    border: 8px double #957C62;
+    margin-top: 60px;
+    padding: 20px;
+    text-align:center;
+    background:#FFECD4;
+}
 
-        footer img {
-            width:60px;
-            margin: 0 12px;
-        }
-    </style>
+footer img {
+    width:60px;
+    margin: 0 12px;
+}
+</style>
 </head>
 <body>
 
@@ -252,13 +259,17 @@
 <div class="divider"></div>
 
 <a href="collection.html" class="collect-btn">Collected</a>
+
 <div class="collect-text">Collect your future and store it</div>
-<a href="index.html"><img src="undo.png" class="back-btn"></a>
+
+<a href="index.html">
+    <img src="undo.png" class="back-btn">
+</a>
 
 <div id="popupBox">
     <div id="popupText">Are you sure?</div>
     <button id="yesBtn" class="pop-btn">Yes</button>
-    <button id="noBtn" class="pop-btn no">No</button>
+    <button id="noBtn" class="pop-btn" style="background:#957C62;">No</button>
 </div>
 
 <footer>
@@ -286,19 +297,48 @@ for(let i=0;i<35;i++){
     sparkles.appendChild(s);
 }
 
+// daily claim logic (limit 3 per day)
 const claimButtons = document.querySelectorAll('.btn');
-const popupBox = document.getElementById("popupBox");
+const popup = document.getElementById("popupBox");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
+const today = new Date().toISOString().slice(0,10);
+
+if (localStorage.getItem("lastClaimDate") !== today){
+    localStorage.setItem("dailyClaims", JSON.stringify([]));
+    localStorage.setItem("lastClaimDate", today);
+}
+
+let dailyClaims = JSON.parse(localStorage.getItem("dailyClaims"));
 let currentBtn = null;
 
 function showPopup(text){
     document.getElementById("popupText").innerHTML = text;
-    popupBox.style.display = "block";
+    popup.style.display = "block";
 }
 
-claimButtons.forEach((btn)=>{
+claimButtons.forEach((btn, index)=>{
+    const cookieID = index+1;
+
+    if(dailyClaims.includes(cookieID)){
+        btn.innerText = "Claimed";
+        btn.classList.add("claimed");
+    }
+
     btn.addEventListener("click", function(e){
+        if(btn.classList.contains("claimed")){
+            e.preventDefault();
+            return;
+        }
+
+        // limit to 3 per day
+        if(dailyClaims.length >= 3){
+            e.preventDefault();
+            showPopup("You reached your daily limit of 3 cookies 🥺");
+            currentBtn = null;
+            return;
+        }
+
         e.preventDefault();
         currentBtn = btn;
         showPopup("Do you want to claim this cookie?");
@@ -307,14 +347,20 @@ claimButtons.forEach((btn)=>{
 
 yesBtn.addEventListener("click", ()=>{
     if(currentBtn){
+        const id = Array.from(claimButtons).indexOf(currentBtn)+1;
+        if(!dailyClaims.includes(id)){
+            dailyClaims.push(id);
+            localStorage.setItem("dailyClaims", JSON.stringify(dailyClaims));
+        }
         window.location.href = currentBtn.href;
     }
-    popupBox.style.display="none";
+    popup.style.display = "none";
 });
 
 noBtn.addEventListener("click", ()=>{
-    popupBox.style.display="none";
+    popup.style.display = "none";
 });
 </script>
+
 </body>
 </html>

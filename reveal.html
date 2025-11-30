@@ -6,6 +6,7 @@
 <title>Fortune Cookie Reveal</title>
 <link rel="icon" type="image/png" href="fortune.png">
 <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
@@ -52,6 +53,7 @@ body {
     box-shadow: 0 0 15px rgba(183,116,102,0.8),
                 0 0 30px rgba(183,116,102,0.5);
     transition: 0.2s;
+    display: none;
 }
 .collect-btn:hover {
     transform: scale(1.05);
@@ -80,21 +82,38 @@ body {
 <body>
 
 <h1 id="cookieHeading">Cookie</h1>
+
 <img id="cookieImg" src="cookie.png">
+
 <div id="cookieMsg"></div>
-<a href="cookie.html" class="collect-btn" style="display:none;" id="collectBtn">Collect</a>
+
+<button class="collect-btn" id="collectBtn">Collect</button>
+
 <div id="sparkles"></div>
 
 <script>
+// ✨ Sparkles
+const sparkles = document.getElementById("sparkles");
+for(let i=0;i<35;i++){
+    const s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDelay=(Math.random()*6)+"s";
+    s.style.opacity=0.6+Math.random()*0.4;
+    s.style.width=s.style.height=(10+Math.random()*8)+"px";
+    sparkles.appendChild(s);
+}
 
-
+// ✨ Get cookie type from URL
 const urlParams = new URLSearchParams(window.location.search);
 const cookieType = urlParams.get('cookie') || '1';
+
 const heading = document.getElementById('cookieHeading');
 const cookieImg = document.getElementById('cookieImg');
 const cookieMsg = document.getElementById('cookieMsg');
 const collectBtn = document.getElementById('collectBtn');
 
+// ✨ Messages
 const messages = {
     1: [
         "You will find luck today!", "A surprise awaits you!", "Your dreams will bloom!",
@@ -103,9 +122,17 @@ const messages = {
     ],
     2: [
         "Wisdom comes to you.", "A new idea sparks soon.", "Knowledge will guide you.",
-        "Insight will
+        "Insight will help today!", "Clarity is near!", "Your mind shines bright!",
+        "Learning brings rewards!", "Answers will come!", "Focus brings success!", "Listen to your intuition!"
+    ],
+    3: [
+        "Energy flows your way.", "You will feel motivated!", "Your spirit shines bright!",
+        "Strength is within you!", "A boost of power arrives!", "Vitality surrounds you!",
+        "Confidence grows!", "Courage appears!", "Action leads to reward!", "Keep moving forward!"
+    ]
 };
 
+// ✨ Headings
 const headings = {
     1: "Lucky Star Cookie",
     2: "Wisdom Cookie",
@@ -118,14 +145,48 @@ cookieImg.src = "cookie.png";
 let clickCount = 0;
 const clicksToFade = 5;
 let revealed = false;
+let finalMessage = "";
 
+// ✨ Crack cookie
 cookieImg.addEventListener("click", ()=>{
     if(revealed) return;
+
     clickCount++;
+
     cookieImg.style.transform = `rotate(${Math.random()*20-10}deg)`;
     setTimeout(()=> cookieImg.style.transform = 'rotate(0deg)', 150);
 
-   
+    if(clickCount >= clicksToFade){
+        revealed = true;
+        cookieImg.style.opacity = 0;
+
+        finalMessage = messages[cookieType][Math.floor(Math.random()*messages[cookieType].length)];
+
+        setTimeout(()=>{
+            cookieMsg.style.opacity = 1;
+            cookieMsg.textContent = finalMessage;
+            collectBtn.style.display = "inline-block";
+        }, 600);
+    }
+});
+
+// ✨ Save to localStorage without leaving page
+collectBtn.addEventListener("click", ()=>{
+    let stored = JSON.parse(localStorage.getItem("fortuneCollection")) || {
+        1: [],
+        2: [],
+        3: []
+    };
+
+    stored[cookieType].push(finalMessage);
+
+    localStorage.setItem("fortuneCollection", JSON.stringify(stored));
+
+    collectBtn.textContent = "Saved ✓";
+    collectBtn.style.background = "#8C5A50";
+    collectBtn.style.cursor = "default";
+    collectBtn.disabled = true;
+});
 </script>
 
 </body>

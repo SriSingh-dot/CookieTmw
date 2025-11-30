@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Collection</title>
+<link rel="icon" type="image/png" href="fortune.png">
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+</head>
+<body>
 
+<h1>Your Collection</h1>
+
+<div class="section">
+    <h2><img src="b1.svg" class="cookie-icon"> Lucky Star Cookie</h2>
+    <div id="type1"></div>
+</div>
+
+<div class="section">
+    <h2><img src="b2.svg" class="cookie-icon"> Wisdom Cookie</h2>
+    <div id="type2"></div>
+</div>
+
+<div class="section">
+    <h2><img src="b3.svg" class="cookie-icon"> Energy Cookie</h2>
+    <div id="type3"></div>
+</div>
+
+<a href="shop.html" class="back-btn">Back</a>
+
+<script>
+let stored = JSON.parse(localStorage.getItem("fortuneCollection")) || {1:[],2:[],3:[]};
+
+function displayMessages(type, elementId) {
+    const container = document.getElementById(elementId);
+    container.innerHTML = "";
+
+    if (stored[type].length === 0) {
+        container.innerHTML = "<div class='empty-text'>No messages yet</div>";
+
+        
+        </script>
+
+
+</body>
+</html>
